@@ -1,0 +1,41 @@
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url('question', ['action' => 'add']));
+
+$question = $form->get('question');
+$question->setAttribute('class', 'form-control');
+
+$correct_answer = $form->get('correct_answer');
+$correct_answer->setAttribute('class', 'form-control');
+
+$first_choose = $form->get('first_choose');
+$first_choose->setAttribute('class', 'form-control');
+
+$second_choose = $form->get('second_choose');
+$second_choose->setAttribute('class', 'form-control');
+
+$third_choose = $form->get('third_choose');
+$third_choose->setAttribute('class', 'form-control');
+
+$submit = $form->get('submit');
+$submit->setAttribute('class', 'btn btn-primary');
+
+$form->prepare();
+echo $this->form()->openTag($form);
+?>
+
+    <div class="form-group">
+        <?= $this->formRow($first_choose); ?>
+        <?= $this->formRow($second_choose); ?>
+        <?= $this->formRow($third_choose); ?>
+    </div>
+
+    <div class="form-group">
+        <?= $this->formRow($question); ?>
+        <?= $this->formRow($correct_answer); ?>
+        <?= $this->formSubmit($submit); ?>
+    </div>
+
+<?php
+echo $this->form()->closeTag(); ?>
+

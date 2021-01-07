@@ -1,0 +1,50 @@
+<?php
+
+namespace Question;
+
+use Laminas\Form\Element\Select;
+
+
+$form = $this->form;
+$form->setAttribute('action', $this->url('question', ['action' => 'index']));
+$form->prepare();
+echo $this->form()->openTag($form);
+
+foreach ($this->questions as $question) {
+    $form->add([
+        'type' => Select::class,
+        'name' => "question_".$question->getId(),
+        'options' => [
+            'label' => $question->getQuestion(),
+            'value_options' => [
+                '1' => $question->getFirstChoose(),
+                '2' => $question->getSecondChoose(),
+                '3' => $question->getThirdChoose()
+            ],
+        ],
+    ]);
+
+    $form->add([
+        'name' => "correct_answer_".$question->getId(),
+        'type' => 'hidden',
+        'attributes' => [
+                'value' => $question->getCorrectAnswer(),
+        ]
+    ]);
+}
+
+var_dump($this->correction);
+?>
+
+<?php foreach ($this->questions as $question): ?>
+    <?= $this->formLabel($form->get("question_".$question->getId())); ?>
+    <?= $this->formSelect($form->get("question_".$question->getId())); ?>
+    <?= $this->formHidden($form->get("correct_answer_".$question->getId())); ?>
+    <br>
+<?php endforeach; ?>
+
+<?php
+echo $this->formSubmit($form->get('submit'));
+?>
+
+
