@@ -1,10 +1,9 @@
-# laminas-mvc-skeleton
+# Questioner Laminas App
 
 ## Introduction
 
 This is a skeleton application using the Laminas MVC layer and module
-systems. This application is meant to be used as a starting place for those
-looking to get their feet wet with Laminas MVC.
+systems. It will give as minimum requirement to create application with mvc structure.
 
 ## Installation using Composer
 
@@ -15,7 +14,7 @@ then please install as per the [documentation](https://getcomposer.org/doc/00-in
 To create your new Laminas MVC project:
 
 ```bash
-$ composer create-project -sdev laminas/laminas-mvc-skeleton path/to/install
+$ composer create-project -s dev laminas/laminas-mvc-skeleton path/to/install
 ```
 
 Once installed, you can test it out immediately using PHP's built-in web server:
