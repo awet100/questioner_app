@@ -36,6 +36,7 @@ foreach ($this->questions as $question) {
 $correction = $this->correction;
 $result = "";
 $feedback = 0;
+$total = 0;
 ?>
 
 <?php foreach ($this->questions as $question): ?>
@@ -49,6 +50,7 @@ $feedback = 0;
             $result = "oh! sorry you mis it!";
             $feedback = 0;
         }
+        $total += $feedback
     ?>
     <?= $this->formLabel($form->get("question_".$question->getId())); ?>
     <?= $this->formSelect($form->get("question_".$question->getId())); ?>
@@ -56,7 +58,7 @@ $feedback = 0;
     <?= $this->formHidden($form->get("correct_answer_".$question->getId())); ?>
     <br>
 <?php endforeach; ?>
-
+<p><?= isset($correction->submit)? "your total points are: ".$total."/".(count($correction)-1)/2: ""?></p>
 <?php
 echo $this->formSubmit($form->get('submit'));
 ?>
