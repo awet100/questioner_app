@@ -78,5 +78,4 @@ class QuestionController extends AbstractActionController
         return $this->redirect()->toRoute('question');
     }
 
-
 }

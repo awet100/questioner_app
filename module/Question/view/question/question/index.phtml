@@ -34,25 +34,25 @@ foreach ($this->questions as $question) {
 }
 
 $correction = $this->correction;
-var_dump($correction->question_8);
-var_dump($correction);
-
+$result = "";
+$feedback = 0;
 ?>
 
 <?php foreach ($this->questions as $question): ?>
     <?php
-        $result = "";
         $question_num = 'question_'.$question->getId();
         $correct_answer_num = 'correct_answer_'.$question->getId();
         if (isset($correction->submit) && $correction->$question_num == $correction->$correct_answer_num) {
             $result = "it is correct answer congratulation";
+            $feedback = 1;
         } elseif (isset($correction->submit)) {
             $result = "oh! sorry you mis it!";
+            $feedback = 0;
         }
     ?>
     <?= $this->formLabel($form->get("question_".$question->getId())); ?>
     <?= $this->formSelect($form->get("question_".$question->getId())); ?>
-    <p><?= $result?></p>
+    <p <?= ($feedback == 0)? 'style="color: red"': 'style="color: green"'?>><?= $result?></p>
     <?= $this->formHidden($form->get("correct_answer_".$question->getId())); ?>
     <br>
 <?php endforeach; ?>
